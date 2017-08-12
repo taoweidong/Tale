@@ -1,11 +1,12 @@
 #include('./header.html', {title: '友情链接'})
-<article class="main-content post-page">
+<article class="main-content page-page">
 	<div id="post-content" class="post-content">
 		<h3>友情链接</h3>
 		<ul class="flinks">
 			#for(link : links)
-			<li>🔒 <a href="${link.slug}" target="_blank">${link.name}</a></li> <br/>
-			#end
+			<li>🔒 <a href="${link.slug}" target="_blank">${link.name}</a></li>
+			<br />
+			 #end
 		</ul>
 		<h3>链接须知</h3>
 		<blockquote>

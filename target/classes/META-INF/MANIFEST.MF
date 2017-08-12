@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Built-By: Taowd
+Class-Path: resources/ lib/blade-core-1.7.2-alpha.jar lib/slf4j-api-1.
+ 7.21.jar lib/slf4j-log4j12-1.7.21.jar lib/log4j-1.2.17.jar lib/blade-
+ kit-1.4.1-beta.jar lib/javax.servlet-api-3.1.0.jar lib/sqlite-jdbc-3.
+ 15.1.jar lib/blade-jdbc-0.1.6-beta.jar lib/sql2o-1.6.0-RC3.jar lib/pe
+ rsistence-api-1.0.2.jar lib/blade-template-jetbrick-0.0.9.jar lib/jet
+ brick-template-2.1.2.jar lib/jetbrick-commons-2.1.1.jar lib/antlr4-ru
+ ntime-4.3.jar lib/org.abego.treelayout.core-1.0.1.jar lib/antlr4-anno
+ tations-4.3.jar lib/commonmark-0.8.0.jar lib/commonmark-ext-gfm-table
+ s-0.8.0.jar lib/blade-embed-jetty-0.1.3.jar lib/jetty-server-9.4.0.v2
+ 0161208.jar lib/jetty-http-9.4.0.v20161208.jar lib/jetty-util-9.4.0.v
+ 20161208.jar lib/jetty-webapp-9.4.0.v20161208.jar lib/jetty-servlet-9
+ .4.0.v20161208.jar lib/rome-1.0.jar lib/jdom-1.0.jar lib/emoji-java-3
+ .2.0.jar lib/json-20140107.jar
+Build-Jdk: 1.8.0
+Created-By: Maven Integration for Eclipse
+Main-Class: com.tale.Application
+

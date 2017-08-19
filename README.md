@@ -1,2 +1,14 @@
-# Tale
-使用开源项目tale作为基础进行二次开发个人博客
+# My Blog
+
+My Blog是由SpringBoot+Mybatis+thymeleaf等技术实现的Java博客系统，
+使用开源博客tale作为原型进行二次开发，参考Githua http://blog.hanshuai.xin的博客开发，是一个自己练手的项目，学习下Springboot开发
+
+
+#### 相关博客文章
+
+* [x] [Docker+SpringBoot+Mybatis+thymeleaf的Java博客系统开源啦](http://www.cnblogs.com/han-1034683568/p/6840493.html)
+* [x] [My-Blog搭建过程：如何让一个网站从零到可以上线访问](http://www.cnblogs.com/han-1034683568/p/6885545.html)
+* [x] [利用Dockerfile构建mysql镜像并实现数据的初始化及权限设置](http://www.cnblogs.com/han-1034683568/p/6941337.html)
+* [x] [Java开源博客My-Blog之docker容器组件化修改](http://www.cnblogs.com/han-1034683568/p/7102765.html)
+* [x] [Java开源博客My-Blog之mysql容器重复初始化的严重bug修复过程](http://www.cnblogs.com/han-1034683568/p/7231895.html)
+

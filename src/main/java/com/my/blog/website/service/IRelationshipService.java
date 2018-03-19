@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface IRelationshipService {
     /**
-     * 按住键删除
+     * 按主键删除
      * @param cid
      * @param mid
      */

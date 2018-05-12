@@ -415,9 +415,6 @@ public class TaleUtils {
      */
     public static String getUplodFilePath() {
         String path = TaleUtils.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-
-        LOGGER.info("文件上传路径：" + path);
-
         path = path.substring(1, path.length());
         try {
             path = java.net.URLDecoder.decode(path, "utf-8");

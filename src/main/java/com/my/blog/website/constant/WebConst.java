@@ -10,6 +10,9 @@ import java.util.Map;
  */
 @Component
 public class WebConst {
+    /**
+     * 系統配置
+     */
     public static Map<String, String> initConfig = new HashMap<>();
 
 

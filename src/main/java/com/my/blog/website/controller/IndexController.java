@@ -12,10 +12,8 @@ import com.my.blog.website.modal.Bo.RestResponseBo;
 import com.my.blog.website.modal.Vo.CommentVo;
 import com.my.blog.website.modal.Vo.ContentVo;
 import com.my.blog.website.modal.Vo.MetaVo;
-import com.my.blog.website.service.ICommentService;
-import com.my.blog.website.service.IContentService;
-import com.my.blog.website.service.IMetaService;
-import com.my.blog.website.service.ISiteService;
+import com.my.blog.website.modal.Vo.OptionVo;
+import com.my.blog.website.service.*;
 import com.my.blog.website.utils.IPKit;
 import com.my.blog.website.utils.PatternKit;
 import com.my.blog.website.utils.TaleUtils;
@@ -33,7 +31,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 首页 -  前台页面的控制器
@@ -55,6 +55,9 @@ public class IndexController extends BaseController {
     @Resource
     private ISiteService siteService;
 
+    @Resource
+    private IOptionService optionService;
+
     /**
      * 首页
      *
@@ -62,6 +65,8 @@ public class IndexController extends BaseController {
      */
     @GetMapping(value = "/")
     public String index(HttpServletRequest request, @RequestParam(value = "limit", defaultValue = "12") int limit) {
+
+
         return this.index(request, 1, limit);
     }
 

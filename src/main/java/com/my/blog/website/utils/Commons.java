@@ -2,14 +2,16 @@ package com.my.blog.website.utils;
 
 
 import com.github.pagehelper.PageInfo;
-import com.my.blog.website.service.ISiteService;
-import com.vdurmont.emoji.EmojiParser;
 import com.my.blog.website.constant.WebConst;
 import com.my.blog.website.dto.MetaDto;
 import com.my.blog.website.dto.Types;
 import com.my.blog.website.modal.Vo.CommentVo;
 import com.my.blog.website.modal.Vo.ContentVo;
+import com.my.blog.website.service.ISiteService;
+import com.vdurmont.emoji.EmojiParser;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.io.UnsupportedEncodingException;
@@ -28,6 +30,8 @@ import java.util.regex.Pattern;
  */
 @Component
 public final class Commons {
+
+    private static final Logger logger = LoggerFactory.getLogger(Commons.class);
 
     private static ISiteService siteService;
 

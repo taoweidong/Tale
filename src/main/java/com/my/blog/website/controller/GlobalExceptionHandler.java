@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /**
- * Created by BlueT on 2017/3/4.
+ * 统一异常处理
  */
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -15,15 +15,15 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = TipException.class)
     public String tipException(Exception e) {
-        LOGGER.error("find exception:e={}",e.getMessage());
+        LOGGER.error("find exception:e={}", e.getMessage());
         e.printStackTrace();
         return "comm/error_500";
     }
 
 
     @ExceptionHandler(value = Exception.class)
-    public String exception(Exception e){
-        LOGGER.error("find exception:e={}",e.getMessage());
+    public String exception(Exception e) {
+        LOGGER.error("find exception:e={}", e.getMessage());
         e.printStackTrace();
         return "comm/error_404";
     }

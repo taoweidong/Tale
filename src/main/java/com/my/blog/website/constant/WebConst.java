@@ -11,7 +11,7 @@ import java.util.Map;
 @Component
 public class WebConst {
     /**
-     * 系統配置
+     * 系統配置-作为系统缓存数据
      */
     public static Map<String, String> initConfig = new HashMap<>();
 

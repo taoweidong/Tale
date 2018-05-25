@@ -1,7 +1,7 @@
 # My Blog
 
 My Blog是由SpringBoot+Mybatis+thymeleaf等技术实现的Java博客系统，
-使用开源博客tale作为原型进行二次开发，参考Githua http://blog.hanshuai.xin的博客开发，是一个自己练手的项目，学习下Springboot开发
+使用开源博客tale作为原型进行二次开发，用于个人技术学习以及整理的平台。
 
 
 #### 相关博客文章
@@ -12,3 +12,5 @@ My Blog是由SpringBoot+Mybatis+thymeleaf等技术实现的Java博客系统，
 * [x] [Java开源博客My-Blog之docker容器组件化修改](http://www.cnblogs.com/han-1034683568/p/7102765.html)
 * [x] [Java开源博客My-Blog之mysql容器重复初始化的严重bug修复过程](http://www.cnblogs.com/han-1034683568/p/7231895.html)
 
+# 个人博客地址：
+[http://www.taoweidong.com](http://www.taoweidong.com)

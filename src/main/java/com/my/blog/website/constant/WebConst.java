@@ -6,10 +6,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 功能：系统全局变量
+ * 全局变量
  */
 @Component
 public class WebConst {
+    /**
+     * 系統配置-作为系统缓存数据
+     */
     public static Map<String, String> initConfig = new HashMap<>();
 
 

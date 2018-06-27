@@ -1,5 +1,8 @@
 package com.my.blog.website.exception;
 
+/**
+ * 自定义异常处理
+ */
 public class TipException extends RuntimeException {
 
     public TipException() {

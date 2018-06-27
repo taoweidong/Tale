@@ -1,6 +1,7 @@
 #!/bin/bash
-# author: 13
+# author: Taowd
 # date: 2017-06-30
+# comm: 博客程序的启动脚本
 
 
 env_args="-Xms128m -Xmx128m"

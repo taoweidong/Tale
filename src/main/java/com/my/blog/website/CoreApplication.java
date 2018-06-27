@@ -1,11 +1,15 @@
 package com.my.blog.website;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.my.blog.website.constant.WebConst;
+import com.my.blog.website.modal.Vo.OptionVo;
+import com.my.blog.website.service.impl.OptionServiceImpl;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -18,11 +22,15 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 @MapperScan("com.my.blog.website.dao")//扫描Mybatis对应的接口包
 @SpringBootApplication
 @EnableTransactionManagement
 public class CoreApplication {
+
+
 
     private static final Logger logger = LoggerFactory.getLogger(CoreApplication.class);
 
@@ -56,6 +64,9 @@ public class CoreApplication {
         // 连接数据库，初始化数据库，即执行创建数据库的语句
 
         SpringApplication.run(CoreApplication.class, args);
+
+
+
 
         logger.info("启动为完毕" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
     }

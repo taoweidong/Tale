@@ -12,10 +12,12 @@ import com.my.blog.website.modal.Bo.RestResponseBo;
 import com.my.blog.website.modal.Vo.CommentVo;
 import com.my.blog.website.modal.Vo.ContentVo;
 import com.my.blog.website.modal.Vo.MetaVo;
+import com.my.blog.website.modal.Vo.OptionVo;
 import com.my.blog.website.service.ICommentService;
 import com.my.blog.website.service.IContentService;
 import com.my.blog.website.service.IMetaService;
 import com.my.blog.website.service.ISiteService;
+import com.my.blog.website.service.impl.OptionServiceImpl;
 import com.my.blog.website.utils.IPKit;
 import com.my.blog.website.utils.PatternKit;
 import com.my.blog.website.utils.TaleUtils;
@@ -23,6 +25,7 @@ import com.vdurmont.emoji.EmojiParser;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +37,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.net.URLEncoder;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 首页 -  前台页面的控制器
@@ -55,6 +59,10 @@ public class IndexController extends BaseController {
     @Resource
     private ISiteService siteService;
 
+
+    @Autowired
+    private OptionServiceImpl optionService;
+
     /**
      * 首页
      *
@@ -62,6 +70,20 @@ public class IndexController extends BaseController {
      */
     @GetMapping(value = "/")
     public String index(HttpServletRequest request, @RequestParam(value = "limit", defaultValue = "12") int limit) {
+
+        if (WebConst.initConfig.size() <= 0) {
+            //修复切换标签后点击log无法返回主页的问题
+            List<OptionVo> optionVos = optionService.getOptions();
+            for (OptionVo vo : optionVos) {
+                WebConst.initConfig.put(vo.getName(), vo.getValue());
+            }
+
+            //检查配置文件是否加载完毕
+            for (Map.Entry<String, String> item : WebConst.initConfig.entrySet()) {
+                System.out.println(item.getKey() + "--" + item.getValue());
+            }
+        }
+
         return this.index(request, 1, limit);
     }
 

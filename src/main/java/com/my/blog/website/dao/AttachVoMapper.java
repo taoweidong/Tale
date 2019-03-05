@@ -8,25 +8,27 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface AttachVoMapper {
-    long countByExample(AttachVoExample example);
+	long countByExample(AttachVoExample example);
 
-    int deleteByExample(AttachVoExample example);
+	int deleteByExample(AttachVoExample example);
 
-    int deleteByPrimaryKey(Integer id);
+	int deleteByPrimaryKey(Integer id);
 
-    int insert(AttachVo record);
+	int insert(AttachVo record);
 
-    int insertSelective(AttachVo record);
+	int insertSelective(AttachVo record);
 
-    List<AttachVo> selectByExample(AttachVoExample example);
+	List<AttachVo> selectByExample(AttachVoExample example);
 
-    AttachVo selectByPrimaryKey(Integer id);
+	AttachVo selectByPrimaryKey(Integer id);
 
-    int updateByExampleSelective(@Param("record") AttachVo record, @Param("example") AttachVoExample example);
+	int updateByExampleSelective(@Param("record") AttachVo record,
+			@Param("example") AttachVoExample example);
 
-    int updateByExample(@Param("record") AttachVo record, @Param("example") AttachVoExample example);
+	int updateByExample(@Param("record") AttachVo record,
+			@Param("example") AttachVoExample example);
 
-    int updateByPrimaryKeySelective(AttachVo record);
+	int updateByPrimaryKeySelective(AttachVo record);
 
-    int updateByPrimaryKey(AttachVo record);
+	int updateByPrimaryKey(AttachVo record);
 }

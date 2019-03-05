@@ -8,25 +8,26 @@ import org.springframework.stereotype.Component;
 
 @Component
 public interface LogVoMapper {
-    long countByExample(LogVoExample example);
+	long countByExample(LogVoExample example);
 
-    int deleteByExample(LogVoExample example);
+	int deleteByExample(LogVoExample example);
 
-    int deleteByPrimaryKey(Integer id);
+	int deleteByPrimaryKey(Integer id);
 
-    int insert(LogVo record);
+	int insert(LogVo record);
 
-    int insertSelective(LogVo record);
+	int insertSelective(LogVo record);
 
-    List<LogVo> selectByExample(LogVoExample example);
+	List<LogVo> selectByExample(LogVoExample example);
 
-    LogVo selectByPrimaryKey(Integer id);
+	LogVo selectByPrimaryKey(Integer id);
 
-    int updateByExampleSelective(@Param("record") LogVo record, @Param("example") LogVoExample example);
+	int updateByExampleSelective(@Param("record") LogVo record,
+			@Param("example") LogVoExample example);
 
-    int updateByExample(@Param("record") LogVo record, @Param("example") LogVoExample example);
+	int updateByExample(@Param("record") LogVo record, @Param("example") LogVoExample example);
 
-    int updateByPrimaryKeySelective(LogVo record);
+	int updateByPrimaryKeySelective(LogVo record);
 
-    int updateByPrimaryKey(LogVo record);
+	int updateByPrimaryKey(LogVo record);
 }

@@ -1,15 +1,19 @@
 package com.my.blog.website;
 
-import com.alibaba.druid.pool.DruidDataSource;
-import com.my.blog.website.constant.WebConst;
-import com.my.blog.website.modal.Vo.OptionVo;
-import com.my.blog.website.service.impl.OptionServiceImpl;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
+import javax.sql.DataSource;
+
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -19,55 +23,47 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.sql.DataSource;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import com.alibaba.druid.pool.DruidDataSource;
 
-@MapperScan("com.my.blog.website.dao")//扫描Mybatis对应的接口包
+@MapperScan("com.my.blog.website.dao") // 扫描Mybatis对应的接口包
 @SpringBootApplication
 @EnableTransactionManagement
 public class CoreApplication {
 
+	private static final Logger logger = LoggerFactory.getLogger(CoreApplication.class);
 
+	/**
+	 * 自定义数据源 并设置ConfigurationProperties 数据库中的属性取值方式是从application中的前缀为spring.datasource的属性中获取
+	 * @return
+	 */
+	@Bean(initMethod = "init", destroyMethod = "close")
+	@ConfigurationProperties(prefix = "spring.datasource")
+	public DataSource dataSource() {
+		return new DruidDataSource();
+	}
 
-    private static final Logger logger = LoggerFactory.getLogger(CoreApplication.class);
+	@Bean
+	public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
+		PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+		sqlSessionFactoryBean.setDataSource(dataSource());
+		// 加载MyBatis映射文件
+		sqlSessionFactoryBean
+				.setMapperLocations(resolver.getResources("classpath*:/mapper/*Mapper.xml"));
+		return sqlSessionFactoryBean.getObject();
+	}
 
-    /**
-     * 自定义数据源  并设置ConfigurationProperties 数据库中的属性取值方式是从application中的前缀为spring.datasource的属性中获取
-     *
-     * @return
-     */
-    @Bean(initMethod = "init", destroyMethod = "close")
-    @ConfigurationProperties(prefix = "spring.datasource")
-    public DataSource dataSource() {
-        return new DruidDataSource();
-    }
+	@Bean
+	public PlatformTransactionManager transactionManager() {
+		return new DataSourceTransactionManager(dataSource());
+	}
 
-    @Bean
-    public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
-        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-        sqlSessionFactoryBean.setDataSource(dataSource());
-        //加载MyBatis映射文件
-        sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath*:/mapper/*Mapper.xml"));
-        return sqlSessionFactoryBean.getObject();
-    }
+	public static void main(String[] args) {
+		// 连接数据库，初始化数据库，即执行创建数据库的语句
 
-    @Bean
-    public PlatformTransactionManager transactionManager() {
-        return new DataSourceTransactionManager(dataSource());
-    }
+		SpringApplication.run(CoreApplication.class, args);
 
-    public static void main(String[] args) {
-        // 连接数据库，初始化数据库，即执行创建数据库的语句
-
-        SpringApplication.run(CoreApplication.class, args);
-
-
-
-
-        logger.info("启动为完毕" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-    }
+		logger.info("启动为完毕"
+				+ LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+	}
 }

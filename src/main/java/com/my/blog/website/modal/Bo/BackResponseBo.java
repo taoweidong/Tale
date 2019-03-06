@@ -7,7 +7,11 @@ import java.io.Serializable;
  */
 public class BackResponseBo implements Serializable {
 
-    private String attachPath;
+    /**
+	 * 意义，目的和功能，以及被用到的地方<br>
+	 */
+	private static final long serialVersionUID = 1L;
+	private String attachPath;
     private String themePath;
     private String sqlPath;
 

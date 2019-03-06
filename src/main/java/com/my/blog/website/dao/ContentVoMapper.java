@@ -1,14 +1,15 @@
 package com.my.blog.website.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
 import com.my.blog.website.modal.Bo.ArchiveBo;
 import com.my.blog.website.modal.Vo.ContentVo;
 import com.my.blog.website.modal.Vo.ContentVoExample;
 
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Component;
-
-@Component
+@Mapper
 public interface ContentVoMapper {
 	long countByExample(ContentVoExample example);
 

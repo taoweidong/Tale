@@ -10,7 +10,11 @@ import java.util.List;
  */
 public class CommentBo extends CommentVo {
 
-    private int levels;
+    /**
+	 * 意义，目的和功能，以及被用到的地方<br>
+	 */
+	private static final long serialVersionUID = 1L;
+	private int levels;
     private List<CommentVo> children;
 
     public CommentBo(CommentVo comments) {

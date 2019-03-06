@@ -2,6 +2,10 @@ package com.my.blog.website.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -9,6 +13,8 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+
+import com.google.common.collect.Lists;
 
 /**
  * Created by Administrator on 2017/3/10 010.
@@ -22,7 +28,7 @@ public class DateKit {
 	public static final int INTERVAL_MINUTE = 6;
 	public static final int INTERVAL_SECOND = 7;
 	public static final Date tempDate = new Date((new Long("-2177481952000")).longValue());
-	private static List<SimpleDateFormat> dateFormats = new ArrayList(12) {
+	private static List<SimpleDateFormat> dateFormats = new ArrayList<SimpleDateFormat>(12) {
 		private static final long serialVersionUID = 2249396579858199535L;
 
 		{
@@ -46,10 +52,16 @@ public class DateKit {
 
 	public static boolean isToday(Date date) {
 		Date now = new Date();
+		Instant instant = now.toInstant();
+		ZoneId zone = ZoneId.systemDefault();
+		LocalDateTime localNow = LocalDateTime.ofInstant(instant, zone);
+		instant = date.toInstant();
+		LocalDateTime localInput = LocalDateTime.ofInstant(instant, zone);
+
 		boolean result = true;
-		result &= date.getYear() == now.getYear();
-		result &= date.getMonth() == now.getMonth();
-		result &= date.getDate() == now.getDate();
+		result &= localInput.getYear() == localNow.getYear();
+		result &= localInput.getYear() == localNow.getMonthValue();
+		result &= localInput.getYear() == localNow.getDayOfMonth();
 		return result;
 	}
 
@@ -239,10 +251,10 @@ public class DateKit {
 	public static List<Integer> getBeforeYearList(int before) {
 		Calendar today = Calendar.getInstance();
 		int theYear = today.get(1);
-		ArrayList list = new ArrayList();
+		List<Integer> list = Lists.newArrayList();
 
 		for (int i = before; i >= 0; --i) {
-			list.add(Integer.valueOf(theYear - i));
+			list.add(theYear - i);
 		}
 
 		return list;
@@ -531,18 +543,12 @@ public class DateKit {
 		return newDate;
 	}
 
-	public static Date getNowTime() {
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Date date = new Date();
-		String dateStr = dateFormat(date);
-
-		try {
-			date = format.parse(dateStr);
-		} catch (ParseException var4) {
-			var4.printStackTrace();
-		}
-
-		return date;
+	/**
+	 * 获取当前时间【yyyy-MM-dd HH:mm:ss】
+	 * @return 当前时间
+	 */
+	public static String getNowTime() {
+		return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 	}
 
 	public static Date getTomorrow(Date date1) {
@@ -628,7 +634,7 @@ public class DateKit {
 		if (null == input) {
 			return null;
 		} else {
-			Iterator var2 = dateFormats.iterator();
+			Iterator<SimpleDateFormat> var2 = dateFormats.iterator();
 
 			while (var2.hasNext()) {
 				SimpleDateFormat format = (SimpleDateFormat) var2.next();

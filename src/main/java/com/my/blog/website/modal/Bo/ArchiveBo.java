@@ -10,40 +10,41 @@ import java.util.List;
  */
 public class ArchiveBo implements Serializable {
 
-    private String date;
-    private String count;
-    private List<ContentVo> articles;
+	/**
+	 * 意义，目的和功能，以及被用到的地方<br>
+	 */
+	private static final long serialVersionUID = 1L;
+	private String date;
+	private String count;
+	private List<ContentVo> articles;
 
-    public String getDate() {
-        return date;
-    }
+	public String getDate() {
+		return date;
+	}
 
-    public void setDate(String date) {
-        this.date = date;
-    }
+	public void setDate(String date) {
+		this.date = date;
+	}
 
-    public String getCount() {
-        return count;
-    }
+	public String getCount() {
+		return count;
+	}
 
-    public void setCount(String count) {
-        this.count = count;
-    }
+	public void setCount(String count) {
+		this.count = count;
+	}
 
-    public List<ContentVo> getArticles() {
-        return articles;
-    }
+	public List<ContentVo> getArticles() {
+		return articles;
+	}
 
-    public void setArticles(List<ContentVo> articles) {
-        this.articles = articles;
-    }
+	public void setArticles(List<ContentVo> articles) {
+		this.articles = articles;
+	}
 
-    @Override
-    public String toString() {
-        return "Archive [" +
-                "date='" + date + '\'' +
-                ", count='" + count + '\'' +
-                ", articles=" + articles +
-                ']';
-    }
+	@Override
+	public String toString() {
+		return "Archive [" + "date='" + date + '\'' + ", count='" + count + '\'' + ", articles="
+				+ articles + ']';
+	}
 }

@@ -1,6 +1,18 @@
 package com.my.blog.website.utils;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Component;
+
 import com.github.pagehelper.PageInfo;
+import com.google.common.collect.Lists;
 import com.my.blog.website.constant.WebConst;
 import com.my.blog.website.dto.MetaDto;
 import com.my.blog.website.dto.Types;
@@ -8,17 +20,6 @@ import com.my.blog.website.modal.Vo.CommentVo;
 import com.my.blog.website.modal.Vo.ContentVo;
 import com.my.blog.website.service.ISiteService;
 import com.vdurmont.emoji.EmojiParser;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Component;
-
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * 主题公共函数
@@ -28,18 +29,9 @@ import java.util.regex.Pattern;
 @Component
 public final class Commons {
 
-	static {
-		// 检查配置文件是否加载完毕
-		for (Map.Entry<String, String> item : WebConst.initConfig.entrySet()) {
-			System.out.println(item.getKey() + "--" + item.getValue());
-		}
-	}
-
 	private static ISiteService siteService;
 
 	public static String THEME = "themes/default";
-
-	private static final List EMPTY = new ArrayList(0);
 
 	public static void setSiteService(ISiteService ss) {
 		siteService = ss;
@@ -50,7 +42,7 @@ public final class Commons {
 	 * @param paginator
 	 * @return
 	 */
-	public static boolean is_empty(PageInfo paginator) {
+	public static boolean is_empty(PageInfo<?> paginator) {
 		return paginator == null || (paginator.getList() == null)
 				|| (paginator.getList().size() == 0);
 	}
@@ -288,7 +280,7 @@ public final class Commons {
 	 */
 	public static List<ContentVo> recent_articles(int limit) {
 		if (null == siteService) {
-			return EMPTY;
+			return Lists.newArrayList();
 		}
 		return siteService.recentContents(limit);
 	}
@@ -300,7 +292,7 @@ public final class Commons {
 	 */
 	public static List<CommentVo> recent_comments(int limit) {
 		if (null == siteService) {
-			return EMPTY;
+			return Lists.newArrayList();
 		}
 		return siteService.recentComments(limit);
 	}

@@ -1,7 +1,7 @@
 package com.my.blog.website.modal.Bo;
 
 /**
- * rest返回对象 ^
+ * rest返回对象
  * @param <T>
  */
 public class RestResponseBo<T> {
@@ -114,6 +114,7 @@ public class RestResponseBo<T> {
 		return new RestResponseBo<T>(true, payload);
 	}
 
+	@SuppressWarnings("unchecked")
 	public static <T> RestResponseBo<T> ok(int code) {
 		return new RestResponseBo(true, null, code);
 	}

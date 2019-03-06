@@ -64,7 +64,7 @@ public class SettingController extends BaseController {
 	@PostMapping(value = "")
 	@ResponseBody
 	@Transactional(rollbackFor = TipException.class)
-	public RestResponseBo saveSetting(@RequestParam(required = false) String site_theme,
+	public RestResponseBo<?> saveSetting(@RequestParam(required = false) String site_theme,
 			HttpServletRequest request) {
 		try {
 			Map<String, String[]> parameterMap = request.getParameterMap();
@@ -101,7 +101,7 @@ public class SettingController extends BaseController {
 	@PostMapping(value = "backup")
 	@ResponseBody
 	@Transactional(rollbackFor = TipException.class)
-	public RestResponseBo backup(@RequestParam String bk_type, @RequestParam String bk_path,
+	public RestResponseBo<?> backup(@RequestParam String bk_type, @RequestParam String bk_path,
 			HttpServletRequest request) {
 		if (StringUtils.isBlank(bk_type)) {
 			return RestResponseBo.fail("请确认信息输入完整");

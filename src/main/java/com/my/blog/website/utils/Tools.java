@@ -18,6 +18,7 @@ import sun.misc.BASE64Encoder;
 public class Tools {
 	private static final Random random = new Random();
 
+	@SuppressWarnings("resource")
 	public static void copyFileUsingFileChannels(File source, File dest) throws IOException {
 		FileChannel inputChannel = null;
 		FileChannel outputChannel = null;

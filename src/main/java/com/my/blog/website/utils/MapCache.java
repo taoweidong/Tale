@@ -38,6 +38,7 @@ public class MapCache {
 	 * @param     <T>
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public <T> T get(String key) {
 		CacheObject cacheObject = cachePool.get(key);
 		if (null != cacheObject) {

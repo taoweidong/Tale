@@ -136,7 +136,7 @@ public class CommentServiceImpl implements ICommentService {
 	 * @param         <T>
 	 * @return
 	 */
-	private <T> PageInfo<T> copyPageInfo(PageInfo ordinal) {
+	private <T> PageInfo<T> copyPageInfo(PageInfo<?> ordinal) {
 		PageInfo<T> returnBo = new PageInfo<T>();
 		returnBo.setPageSize(ordinal.getPageSize());
 		returnBo.setPageNum(ordinal.getPageNum());

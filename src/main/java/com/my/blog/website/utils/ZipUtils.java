@@ -11,6 +11,12 @@ import java.util.zip.ZipOutputStream;
  */
 public class ZipUtils {
 
+	/**
+	 * zip压缩文件夹.
+	 * @param srcFolder
+	 * @param destZipFile
+	 * @throws Exception
+	 */
 	public static void zipFolder(String srcFolder, String destZipFile) throws Exception {
 		ZipOutputStream zip = null;
 		FileOutputStream fileWriter = null;
@@ -23,6 +29,12 @@ public class ZipUtils {
 		zip.close();
 	}
 
+	/**
+	 * ZIP压缩文件.
+	 * @param filePath
+	 * @param zipPath
+	 * @throws Exception
+	 */
 	public static void zipFile(String filePath, String zipPath) throws Exception {
 		byte[] buffer = new byte[1024];
 		FileOutputStream fos = new FileOutputStream(zipPath);
@@ -40,6 +52,14 @@ public class ZipUtils {
 		zos.close();
 	}
 
+	/**
+	 * 添加文件到zip文件中.
+	 * @param path
+	 * @param srcFile
+	 * @param zip
+	 * @throws Exception
+	 */
+	@SuppressWarnings("resource")
 	public static void addFileToZip(String path, String srcFile, ZipOutputStream zip)
 			throws Exception {
 
@@ -57,6 +77,13 @@ public class ZipUtils {
 		}
 	}
 
+	/**
+	 * 添加文件夹到zip文件中.
+	 * @param path
+	 * @param srcFolder
+	 * @param zip
+	 * @throws Exception
+	 */
 	public static void addFolderToZip(String path, String srcFolder, ZipOutputStream zip)
 			throws Exception {
 		File folder = new File(srcFolder);

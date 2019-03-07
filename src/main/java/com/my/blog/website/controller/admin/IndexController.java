@@ -1,6 +1,22 @@
 package com.my.blog.website.controller.admin;
 
-import com.my.blog.website.service.ISiteService;
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.my.blog.website.constant.WebConst;
 import com.my.blog.website.controller.BaseController;
 import com.my.blog.website.dto.LogActions;
@@ -12,20 +28,10 @@ import com.my.blog.website.modal.Vo.ContentVo;
 import com.my.blog.website.modal.Vo.LogVo;
 import com.my.blog.website.modal.Vo.UserVo;
 import com.my.blog.website.service.ILogService;
+import com.my.blog.website.service.ISiteService;
 import com.my.blog.website.service.IUserService;
 import com.my.blog.website.utils.GsonUtils;
 import com.my.blog.website.utils.TaleUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.List;
 
 /**
  * 后台管理首页 Created by Administrator on 2017/3/9 009.
@@ -51,7 +57,6 @@ public class IndexController extends BaseController {
 	 */
 	@GetMapping(value = { "", "/index" })
 	public String index(HttpServletRequest request) {
-		LOGGER.info("Enter admin index method");
 		List<CommentVo> comments = siteService.recentComments(5);
 		List<ContentVo> contents = siteService.recentContents(5);
 		StatisticsBo statistics = siteService.getStatistics();
@@ -62,7 +67,6 @@ public class IndexController extends BaseController {
 		request.setAttribute("articles", contents);
 		request.setAttribute("statistics", statistics);
 		request.setAttribute("logs", logs);
-		LOGGER.info("Exit admin index method");
 		return "admin/index";
 	}
 

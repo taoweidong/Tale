@@ -1,5 +1,6 @@
 package com.my.blog.website.controller.admin;
 
+import com.alibaba.fastjson.JSON;
 import com.my.blog.website.constant.WebConst;
 import com.my.blog.website.controller.BaseController;
 import com.my.blog.website.dto.LogActions;
@@ -72,6 +73,8 @@ public class SettingController extends BaseController {
 			parameterMap.forEach((key, value) -> {
 				querys.put(key, join(value));
 			});
+
+			System.out.println(JSON.toJSONString(querys));
 
 			optionService.saveOptions(querys);
 

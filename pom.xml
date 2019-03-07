@@ -102,7 +102,11 @@
 			<artifactId>commons-lang</artifactId>
 			<version>2.6</version>
 		</dependency>
-
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.9</version>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
 		<dependency>
 			<groupId>com.google.guava</groupId>
@@ -183,15 +187,12 @@
 	<!-- 普通的maven打包方式 -->
 
 	<!-- 结合docker的maven打包方式,并上传提交创建的镜像 -->
-	<!--<build> <plugins> <plugin> <groupId>org.springframework.boot</groupId> 
-		<artifactId>spring-boot-maven-plugin</artifactId> </plugin> <plugin> <groupId>com.spotify</groupId> 
-		<artifactId>docker-maven-plugin</artifactId> <version>${docker.plugin.version}</version> 
-		<executions> <execution> <phase>install</phase> <goals> <goal>build</goal> 
-		</goals> </execution> </executions> <configuration> <imageName>${docker.image.prefix}/${project.artifactId}</imageName> 
-		<dockerDirectory>${project.basedir}/docker-extension/my-blog</dockerDirectory> 
-		<resources> <resource> <targetPath>/</targetPath> <directory>${project.build.directory}</directory> 
-		<include>${project.build.finalName}.jar</include> </resource> </resources> 
-		</configuration> </plugin> </plugins> </build> -->
+	<!--<build> <plugins> <plugin> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-maven-plugin</artifactId> 
+		</plugin> <plugin> <groupId>com.spotify</groupId> <artifactId>docker-maven-plugin</artifactId> <version>${docker.plugin.version}</version> 
+		<executions> <execution> <phase>install</phase> <goals> <goal>build</goal> </goals> </execution> </executions> 
+		<configuration> <imageName>${docker.image.prefix}/${project.artifactId}</imageName> <dockerDirectory>${project.basedir}/docker-extension/my-blog</dockerDirectory> 
+		<resources> <resource> <targetPath>/</targetPath> <directory>${project.build.directory}</directory> <include>${project.build.finalName}.jar</include> 
+		</resource> </resources> </configuration> </plugin> </plugins> </build> -->
 	<!-- 结合docker的maven打包方式,并上传提交创建的镜像 -->
 
 </project>

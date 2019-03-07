@@ -14,13 +14,10 @@ import com.my.blog.website.utils.DateKit;
 @EnableTransactionManagement
 public class CoreApplication {
 
-	private static final Logger logger = LoggerFactory.getLogger(CoreApplication.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(CoreApplication.class);
 
 	public static void main(String[] args) {
-		// 连接数据库，初始化数据库，即执行创建数据库的语句
-
 		SpringApplication.run(CoreApplication.class, args);
-
-		logger.info("启动为完毕" + DateKit.getNowTime());
+		LOGGER.info("启动为完毕------->" + DateKit.getNowTime());
 	}
 }

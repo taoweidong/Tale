@@ -114,13 +114,12 @@ public class RestResponseBo<T> {
 		return new RestResponseBo<T>(true, payload);
 	}
 
-	@SuppressWarnings("unchecked")
 	public static <T> RestResponseBo<T> ok(int code) {
 		return new RestResponseBo(true, null, code);
 	}
 
-	public static <T> RestResponseBo ok(T payload, int code) {
-		return new RestResponseBo(true, payload, code);
+	public static <T> RestResponseBo<T> ok(T payload, int code) {
+		return new RestResponseBo<T>(true, payload, code);
 	}
 
 	public static RestResponseBo fail() {

@@ -1,9 +1,5 @@
 package com.my.blog.website.interceptor;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -106,15 +102,7 @@ public class BaseInterceptor implements HandlerInterceptor {
 	public void postHandle(HttpServletRequest httpServletRequest,
 			HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView)
 			throws Exception {
-		if (WebConst.initConfig == null || WebConst.initConfig.size() == 0) {
-			// 加载系统配置
-			List<OptionVo> voList = optionService.getOptions();
-			Map<String, String> options = new HashMap<>();
-			voList.forEach((option) -> {
-				options.put(option.getName(), option.getValue());
-			});
-			WebConst.initConfig = options;
-		}
+
 		OptionVo ov = optionService.getOptionByName("site_record");
 		httpServletRequest.setAttribute("commons", commons);// 一些工具类和公共方法
 		httpServletRequest.setAttribute("option", ov);

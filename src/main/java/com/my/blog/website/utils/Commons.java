@@ -31,7 +31,10 @@ public final class Commons {
 
 	private static ISiteService siteService;
 
-	public static String THEME = "themes/default";
+	/**
+	 * 主题键.
+	 */
+	private static final String SITE_THEME = "site_theme";
 
 	public static void setSiteService(ISiteService ss) {
 		siteService = ss;
@@ -56,12 +59,29 @@ public final class Commons {
 	}
 
 	/**
+	 * 获取附件地址.
+	 * @param fkey
+	 * @return
+	 */
+	public static String get_attach_url(String fkey) {
+		return site_option("site_url") + fkey;
+	}
+
+	/**
 	 * 返回网站链接下的全址
 	 * @param sub 后面追加的地址
 	 * @return
 	 */
 	public static String site_url(String sub) {
-		return site_option("site_url") + sub;
+
+		// 取出主题并进行拼接地址
+		String site_theme = WebConst.initConfig.get(SITE_THEME);
+		if (StringUtils.isBlank(sub)) {
+			// 返回网站首页
+			return site_option("site_url") + "/";
+		} else {
+			return site_option("site_url") + "/" + site_theme + sub;
+		}
 	}
 
 	/**
@@ -113,23 +133,6 @@ public final class Commons {
 	}
 
 	/**
-	 * 返回主题URL
-	 * @return
-	 */
-	public static String theme_url() {
-		return site_url(Commons.THEME);
-	}
-
-	/**
-	 * 返回主题下的文件路径
-	 * @param sub
-	 * @return
-	 */
-	public static String theme_url(String sub) {
-		return site_url(Commons.THEME + sub);
-	}
-
-	/**
 	 * 返回github头像地址
 	 * @param email
 	 * @return
@@ -137,7 +140,7 @@ public final class Commons {
 	public static String gravatar(String email) {
 		String avatarUrl = "https://github.com/identicons/";
 		if (StringUtils.isBlank(email)) {
-			email = "user@hanshuai.xin";
+			email = "taowd@outlook.com";
 		}
 		String hash = TaleUtils.MD5encode(email.trim().toLowerCase());
 		return avatarUrl + hash + ".png";
@@ -200,12 +203,14 @@ public final class Commons {
 	 * @return
 	 */
 	public static String show_categories(String categories) throws UnsupportedEncodingException {
+		// 取出主题并进行拼接地址
+		String site_theme = WebConst.initConfig.get(SITE_THEME);
 		if (StringUtils.isNotBlank(categories)) {
 			String[] arr = categories.split(",");
 			StringBuffer sbuf = new StringBuffer();
 			for (String c : arr) {
-				sbuf.append("<a href=\"/category/" + URLEncoder.encode(c, "UTF-8") + "\">" + c
-						+ "</a>");
+				sbuf.append("<a href=\"/" + site_theme + "/category/"
+						+ URLEncoder.encode(c, "UTF-8") + "\">" + c + "</a>");
 			}
 			return sbuf.toString();
 		}
@@ -218,11 +223,14 @@ public final class Commons {
 	 * @return
 	 */
 	public static String show_tags(String tags) throws UnsupportedEncodingException {
+		// 取出主题并进行拼接地址
+		String site_theme = WebConst.initConfig.get(SITE_THEME);
 		if (StringUtils.isNotBlank(tags)) {
 			String[] arr = tags.split(",");
 			StringBuffer sbuf = new StringBuffer();
 			for (String c : arr) {
-				sbuf.append("<a href=\"/tag/" + URLEncoder.encode(c, "UTF-8") + "\">" + c + "</a>");
+				sbuf.append("<a href=\"/" + site_theme + "/tag/" + URLEncoder.encode(c, "UTF-8")
+						+ "\">" + c + "</a>");
 			}
 			return sbuf.toString();
 		}

@@ -1,7 +1,31 @@
-package com.my.blog.website.controller;
+package com.my.blog.website.controller.themes.defaults;
+
+import java.net.URLEncoder;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
 import com.my.blog.website.constant.WebConst;
+import com.my.blog.website.controller.BaseController;
 import com.my.blog.website.dto.ErrorCode;
 import com.my.blog.website.dto.MetaDto;
 import com.my.blog.website.dto.Types;
@@ -18,33 +42,19 @@ import com.my.blog.website.service.IContentService;
 import com.my.blog.website.service.IMetaService;
 import com.my.blog.website.service.ISiteService;
 import com.my.blog.website.service.impl.OptionServiceImpl;
+import com.my.blog.website.utils.DateKit;
 import com.my.blog.website.utils.IPKit;
 import com.my.blog.website.utils.PatternKit;
 import com.my.blog.website.utils.TaleUtils;
 import com.vdurmont.emoji.EmojiParser;
-import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.net.URLEncoder;
-import java.util.List;
-import java.util.Map;
 
 /**
  * 首页 - 前台页面的控制器 Created by Administrator on 2017/3/8 008.
  */
 @Controller
-public class IndexController extends BaseController {
-	private static final Logger LOGGER = LoggerFactory.getLogger(IndexController.class);
+@RequestMapping(value = "/default")
+public class DefaultController extends BaseController {
+	private static final Logger LOGGER = LoggerFactory.getLogger(DefaultController.class);
 
 	@Resource
 	private IContentService contentService;
@@ -65,7 +75,7 @@ public class IndexController extends BaseController {
 	 * 首页
 	 * @return
 	 */
-	@GetMapping(value = "/")
+	@GetMapping(value = "/index")
 	public String index(HttpServletRequest request,
 			@RequestParam(value = "limit", defaultValue = "12") int limit) {
 
@@ -298,6 +308,12 @@ public class IndexController extends BaseController {
 		return this.render("archives");
 	}
 
+	@GetMapping(value = "test003")
+	public String test(HttpServletRequest request) {
+		request.setAttribute("test", DateKit.getNowTime());
+		return this.render("test003");
+	}
+
 	/**
 	 * 友链页
 	 * @return
@@ -318,7 +334,7 @@ public class IndexController extends BaseController {
 		if (null == contents) {
 			return this.render_404();
 		}
-		if (contents.getAllowComment()) {
+		if (contents.getAllowComment() != null && contents.getAllowComment()) {
 			String cp = request.getParameter("cp");
 			if (StringUtils.isBlank(cp)) {
 				cp = "1";

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div
+	th:replace="themes/default/header::header(title='新增页面测试',keywords=null)"></div>
+<body>
+	<article class="main-content post-page">
+		<div id="post-content" class="post-content">
+			<h3>
+				新增页面测试----<span th:text="${test}">-</span>
+			</h3>
+		</div>
+	</article>
+</body>
+<div th:replace="themes/default/footer::footer"></div>
+</html>

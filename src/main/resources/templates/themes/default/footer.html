@@ -1,65 +1,66 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" th:fragment="footer">
 <body>
-<footer class="footer bg-white">
-    <div class="footer-social">
-        <div class="footer-container clearfix">
-            <div class="social-list">
-                <th:block th:each="index:${commons.social()}">
-                    <th:block th:if="${index.value}!=null and ${index.value}!=''">
-                        <th:block th:switch="${index.key}">
-                            <th:block th:case="'weibo'">
-                                <a class="social weibo" target="blank"
-                                   th:href="@{${index.value}}">微博</a>
-                            </th:block>
-                            <th:block th:case="'zhihu'">
-                                <a class="social zhihu" target="blank"
-                                   th:href="@{${index.value}}">知乎</a>
-                            </th:block>
-                            <th:block th:case="'github'">
-                                <a class="social github" target="blank"
-                                   th:href="@{${index.value}}">Github</a>
-                            </th:block>
-                            <th:block th:case="'twitter'">
-                                <a class="social twitter" target="blank"
-                                   th:href="@{${index.value}}">Twitter</a>
-                            </th:block>
-                        </th:block>
-                    </th:block>
-                </th:block>
-            </div>
-        </div>
-    </div>
-    <div class="footer-meta">
-        <div class="footer-container">
-            <div class="meta-item meta-copyright">
-                <div class="meta-copyright-info">
-                    <div class="info-text">
-                        <a th:href="${commons.site_url()}" style="display: block;margin: 0 auto;" class="info-logo">
-                            <img style="display: block;margin: 0 auto;" th:src="@{/user/img/logo.png}"
-                                 th:alt="${commons.site_title()}"/>
-                        </a>
-                        <br/>
-                        <p>&copy; 版权所有 <a href="https://github.com/TaciturnK/Tale" target="_blank"
-                                          rel="nofollow">Taowd</a> 保留一切权利
-                        </p>
-                        <br/>
-                        <th:block th:if="${option}!=null and ${option.getValue()}!=''">
-                            <p th:text="${option.getValue()}"></p>
-                        </th:block>
-                    </div>
-                </div>
-            </div>
+	<footer class="footer bg-white">
+		<div class="footer-social">
+			<div class="footer-container clearfix">
+				<div class="social-list">
+					<th:block th:each="index:${commons.social()}">
+						<th:block th:if="${index.value}!=null and ${index.value}!=''">
+							<th:block th:switch="${index.key}">
+								<th:block th:case="'weibo'">
+									<a class="social weibo" target="blank"
+										th:href="@{${index.value}}">微博</a>
+								</th:block>
+								<th:block th:case="'zhihu'">
+									<a class="social zhihu" target="blank"
+										th:href="@{${index.value}}">知乎</a>
+								</th:block>
+								<th:block th:case="'github'">
+									<a class="social github" target="blank"
+										th:href="@{${index.value}}">Github</a>
+								</th:block>
+								<th:block th:case="'twitter'">
+									<a class="social twitter" target="blank"
+										th:href="@{${index.value}}">Twitter</a>
+								</th:block>
+							</th:block>
+						</th:block>
+					</th:block>
+				</div>
+			</div>
+		</div>
+		<div class="footer-meta">
+			<div class="footer-container">
+				<div class="meta-item meta-copyright">
+					<div class="meta-copyright-info">
+						<div class="info-text">
+							<a th:href="${commons.site_url()}"
+								style="display: block; margin: 0 auto;" class="info-logo"> <img
+								style="display: block; margin: 0 auto;"
+								th:src="@{/user/img/logo.png}" th:alt="${commons.site_title()}" />
+							</a> <br />
+							<p>
+								&copy; 版权所有 <a href="https://github.com/TaciturnK/Tale"
+									target="_blank" rel="nofollow">Taowd</a> 保留一切权利
+							</p>
+							<br />
+							<th:block th:if="${option}!=null and ${option.getValue()}!=''">
+								<p th:text="${option.getValue()}"></p>
+							</th:block>
+						</div>
+					</div>
+				</div>
 
-        </div>
-    </div>
-</footer>
+			</div>
+		</div>
+	</footer>
 
-<th:block th:if="${is_post}">
-    <div id="directory-content" class="directory-content">
-        <div id="directory"></div>
-    </div>
-    <script>
+	<th:block th:if="${is_post}">
+		<div id="directory-content" class="directory-content">
+			<div id="directory"></div>
+		</div>
+		<script>
         /*<![CDATA[*/
         var postDirectoryBuild = function () {
             var postChildren = function children(childNodes, reg) {
@@ -151,12 +152,14 @@
         postDirectoryBuild();
         /*]]>*/
     </script>
-</th:block>
+	</th:block>
 
-<script th:src="@{//cdn.bootcss.com/headroom/0.9.1/headroom.min.js}"></script>
-<script th:src="@{//cdn.bootcss.com/highlight.js/9.9.0/highlight.min.js}"></script>
-<script th:src="@{//cdn.bootcss.com/instantclick/3.0.1/instantclick.min.js}"></script>
-<script th:inline="javascript">
+	<script th:src="@{//cdn.bootcss.com/headroom/0.9.1/headroom.min.js}"></script>
+	<script
+		th:src="@{//cdn.bootcss.com/highlight.js/9.9.0/highlight.min.js}"></script>
+	<script
+		th:src="@{//cdn.bootcss.com/instantclick/3.0.1/instantclick.min.js}"></script>
+	<script th:inline="javascript">
     /*<![CDATA[*/
     var isOk = [[${is_post}]];
     if (isOk) {
@@ -187,13 +190,13 @@
         if (key == 13) {
             var q = $(this).val();
             if (q && q != '') {
-                window.location.href = '/search/' + q;
+                window.location.href = '/default/search/' + q;
             }
         }
     });
     /*]]>*/
 </script>
-<script data-no-instant="">
+	<script data-no-instant="">
     /*<![CDATA[*/
     InstantClick.on('change', function (isInitialLoad) {
         var blocks = document.querySelectorAll('pre code');

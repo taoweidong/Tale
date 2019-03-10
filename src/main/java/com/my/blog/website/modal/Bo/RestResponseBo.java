@@ -115,27 +115,28 @@ public class RestResponseBo<T> {
 	}
 
 	public static <T> RestResponseBo<T> ok(int code) {
-		return new RestResponseBo(true, null, code);
+		return new RestResponseBo<>(true, null, code);
 	}
 
 	public static <T> RestResponseBo<T> ok(T payload, int code) {
 		return new RestResponseBo<T>(true, payload, code);
 	}
 
-	public static RestResponseBo fail() {
-		return new RestResponseBo(false);
+	public static RestResponseBo<?> fail() {
+
+		return new RestResponseBo<>(false);
 	}
 
-	public static RestResponseBo fail(String msg) {
-		return new RestResponseBo(false, msg);
+	public static RestResponseBo<?> fail(String msg) {
+		return new RestResponseBo<>(false, msg);
 	}
 
-	public static RestResponseBo fail(int code) {
-		return new RestResponseBo(false, null, code);
+	public static RestResponseBo<?> fail(int code) {
+		return new RestResponseBo<>(false, null, code);
 	}
 
-	public static RestResponseBo fail(int code, String msg) {
-		return new RestResponseBo(false, msg, code);
+	public static RestResponseBo<?> fail(int code, String msg) {
+		return new RestResponseBo<>(false, msg, code);
 	}
 
 }

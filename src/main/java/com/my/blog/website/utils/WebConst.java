@@ -1,4 +1,4 @@
-package com.my.blog.website.constant;
+package com.my.blog.website.utils;
 
 import org.springframework.stereotype.Component;
 

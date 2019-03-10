@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.my.blog.website.constant.WebConst;
 import com.my.blog.website.controller.BaseController;
 import com.my.blog.website.dto.LogActions;
 import com.my.blog.website.exception.TipException;
@@ -28,6 +27,7 @@ import com.my.blog.website.modal.Vo.UserVo;
 import com.my.blog.website.service.ILogService;
 import com.my.blog.website.service.IUserService;
 import com.my.blog.website.utils.TaleUtils;
+import com.my.blog.website.utils.WebConst;
 
 /**
  * 用户后台登录/登出 Created by BlueT on 2017/3/11.

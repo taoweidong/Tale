@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.my.blog.website.constant.WebConst;
 import com.my.blog.website.dto.Types;
 import com.my.blog.website.modal.Vo.OptionVo;
 import com.my.blog.website.modal.Vo.UserVo;
@@ -22,6 +21,7 @@ import com.my.blog.website.utils.IPKit;
 import com.my.blog.website.utils.MapCache;
 import com.my.blog.website.utils.TaleUtils;
 import com.my.blog.website.utils.UUID;
+import com.my.blog.website.utils.WebConst;
 
 /**
  * 自定义SpringMVC拦截器<br/>

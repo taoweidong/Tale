@@ -1,6 +1,5 @@
 package com.my.blog.website.utils.backup;
 
-
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
@@ -13,16 +12,20 @@ import com.my.blog.website.utils.backup.db.Row;
 
 public class Backup {
 	// DateFormat 对象不是线程安全的,所以绑定到ThreadLocal对象里面,单个线程格式化使用同一个对象
-	private final static ThreadLocal<DateFormat> DATE_FORMAT_THREAD_LOCAL = ThreadLocal.withInitial(() -> new SimpleDateFormat("yyy-MM-dd"));
-	private final static ThreadLocal<DateFormat> DATE_TIME_FORMAT_THREAD_LOCAL = ThreadLocal.withInitial(() -> new SimpleDateFormat("yyy-MM-dd hh:mm:ss"));
-	private final static ThreadLocal<DateFormat> TIME_FORMAT_THREAD_LOCAL = ThreadLocal.withInitial(() -> new SimpleDateFormat("hh:mm:ss"));
+	private final static ThreadLocal<DateFormat> DATE_FORMAT_THREAD_LOCAL = ThreadLocal
+			.withInitial(() -> new SimpleDateFormat("yyy-MM-dd"));
+	private final static ThreadLocal<DateFormat> DATE_TIME_FORMAT_THREAD_LOCAL = ThreadLocal
+			.withInitial(() -> new SimpleDateFormat("yyy-MM-dd hh:mm:ss"));
+	private final static ThreadLocal<DateFormat> TIME_FORMAT_THREAD_LOCAL = ThreadLocal
+			.withInitial(() -> new SimpleDateFormat("hh:mm:ss"));
 	private Connection connection;
 	private TableCollection tables;
 	private boolean addEmptyTable;
 
-	//private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyy-MM-dd");
-	//private static final DateFormat DATE_TIME_FORMAT = new SimpleDateFormat("yyy-MM-dd hh:mm:ss");
-	//private static final DateFormat TIME_FORMAT = new SimpleDateFormat("hh:mm:ss");
+	// private static final DateFormat DATE_FORMAT = new SimpleDateFormat("yyy-MM-dd");
+	// private static final DateFormat DATE_TIME_FORMAT = new SimpleDateFormat("yyy-MM-dd
+	// hh:mm:ss");
+	// private static final DateFormat TIME_FORMAT = new SimpleDateFormat("hh:mm:ss");
 
 	public Backup(Connection connection) {
 		this.addEmptyTable = true;
@@ -47,14 +50,11 @@ public class Backup {
 
 		// get columns
 		for (Table table : tables) {
-			dataTable = DataTable.parse(metaData.getColumns(null, null,
-					table.getName(), null));
-			//System.out.print(dataTable);
+			dataTable = DataTable.parse(metaData.getColumns(null, null, table.getName(), null));
+			// System.out.print(dataTable);
 			for (Row row : dataTable) {
-				table.getColumns().add(
-						new Column(row.getString("COLUMN_NAME"), row
-								.getString("TYPE_NAME"), row
-								.getInteger("DATA_TYPE")));
+				table.getColumns().add(new Column(row.getString("COLUMN_NAME"),
+						row.getString("TYPE_NAME"), row.getInteger("DATA_TYPE")));
 			}
 		}
 
@@ -62,14 +62,13 @@ public class Backup {
 		for (int i = 0; i < tables.size(); i++) {
 			for (int j = 0; j < tables.size(); j++) {
 				if (i != j) {
-					dataTable = DataTable.parse(metaData.getCrossReference(
-							null, null, tables.get(i).getName(), null, null,
-							tables.get(j).getName()));
+					dataTable = DataTable.parse(metaData.getCrossReference(null, null,
+							tables.get(i).getName(), null, null, tables.get(j).getName()));
 					if (dataTable.size() > 0) {
 						Table src = tables.get(j);
 						for (Row row : dataTable) {
 							src.getConstraints().add(new FK(row.getString("FKCOLUMN_NAME"),
-											tables.get(i), row.getString("PKCOLUMN_NAME")));
+									tables.get(i), row.getString("PKCOLUMN_NAME")));
 						}
 					}
 				}
@@ -86,16 +85,15 @@ public class Backup {
 		}
 
 		for (Table table : tables) {
-			dataTable = DataTable.execute(connection, "select * from " + quote + table.getName() + quote);
+			dataTable = DataTable.execute(connection,
+					"select * from " + quote + table.getName() + quote);
 			if (dataTable.size() > 0) {
 				printInfo(sbuf, table.getName());
 
-				String str = "insert into " + quote + table.getName() + quote
-						+ " (" + quote + table.getColumns().get(0).getName()
-						+ quote;
+				String str = "insert into " + quote + table.getName() + quote + " (" + quote
+						+ table.getColumns().get(0).getName() + quote;
 				for (int i = 1; i < table.getColumns().size(); i++) {
-					str += ", " + quote + table.getColumns().get(i).getName()
-							+ quote;
+					str += ", " + quote + table.getColumns().get(i).getName() + quote;
 				}
 				str += ") values ";
 				sbuf.append(str);

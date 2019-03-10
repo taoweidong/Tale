@@ -17,6 +17,7 @@ public class CoreApplication {
 	public static void main(String[] args) {
 
 		SpringApplication.run(CoreApplication.class, args);
+
 		LOGGER.info("启动为完毕------->" + DateKit.getNowTime());
 	}
 }

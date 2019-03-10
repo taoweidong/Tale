@@ -1,7 +1,6 @@
 package com.my.blog.website.controller.admin;
 
 import com.alibaba.fastjson.JSON;
-import com.my.blog.website.constant.WebConst;
 import com.my.blog.website.controller.BaseController;
 import com.my.blog.website.dto.LogActions;
 import com.my.blog.website.exception.TipException;
@@ -12,6 +11,8 @@ import com.my.blog.website.service.ILogService;
 import com.my.blog.website.service.IOptionService;
 import com.my.blog.website.service.ISiteService;
 import com.my.blog.website.utils.GsonUtils;
+import com.my.blog.website.utils.WebConst;
+
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -81,7 +82,9 @@ public class SettingController extends BaseController {
 			WebConst.initConfig = querys;
 
 			if (StringUtils.isNotBlank(site_theme)) {
-				BaseController.THEME = "themes/" + site_theme;
+				// BaseController.THEME = "themes/" + site_theme;
+				// 更新 缓存中的主题信息
+				this.cache.set(SITE_THEME, "themes/" + site_theme);
 			}
 			logService.insertLog(LogActions.SYS_SETTING.getAction(), GsonUtils.toJsonString(querys),
 					request.getRemoteAddr(), this.getUid(request));

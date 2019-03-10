@@ -9,7 +9,6 @@ import javax.annotation.Resource;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
-import com.my.blog.website.constant.WebConst;
 import com.my.blog.website.dao.MetaVoMapper;
 import com.my.blog.website.dto.MetaDto;
 import com.my.blog.website.dto.Types;
@@ -21,6 +20,7 @@ import com.my.blog.website.modal.Vo.RelationshipVoKey;
 import com.my.blog.website.service.IContentService;
 import com.my.blog.website.service.IMetaService;
 import com.my.blog.website.service.IRelationshipService;
+import com.my.blog.website.utils.WebConst;
 
 /**
  * Created by BlueT on 2017/3/17.

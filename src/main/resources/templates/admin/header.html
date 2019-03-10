@@ -54,7 +54,8 @@
 					</div>
 
 					<ul class="nav navbar-nav navbar-right pull-right">
-						<li class="dropdown"><a th:href="@{index.html}"
+						<li class="dropdown">
+						<a th:href="@{index.html}"
 							class="dropdown-toggle profile" data-toggle="dropdown"
 							aria-expanded="true"><img
 								th:src="${commons.gravatar(session.login_user.email)}"

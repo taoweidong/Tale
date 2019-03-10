@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Lists;
-import com.my.blog.website.constant.WebConst;
 import com.my.blog.website.dto.MetaDto;
 import com.my.blog.website.dto.Types;
 import com.my.blog.website.modal.Vo.CommentVo;
@@ -138,12 +137,13 @@ public final class Commons {
 	 * @return
 	 */
 	public static String gravatar(String email) {
-		String avatarUrl = "https://github.com/identicons/";
-		if (StringUtils.isBlank(email)) {
-			email = "taowd@outlook.com";
-		}
-		String hash = TaleUtils.MD5encode(email.trim().toLowerCase());
-		return avatarUrl + hash + ".png";
+		// String avatarUrl = "https://github.com/identicons/";
+		// if (StringUtils.isBlank(email)) {
+		// email = "taowd@outlook.com";
+		// }
+		// String hash = TaleUtils.MD5encode(email.trim().toLowerCase());
+		// return avatarUrl + hash + ".png";
+		return "https://avatars0.githubusercontent.com/u/23622072?s=40&u=c617e91650b6456db27167c74c76ff616af532f6&v=4";
 	}
 
 	/**

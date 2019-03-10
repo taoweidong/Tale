@@ -9,9 +9,9 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import com.my.blog.website.constant.WebConst;
 import com.my.blog.website.modal.Vo.OptionVo;
 import com.my.blog.website.service.IOptionService;
+import com.my.blog.website.utils.WebConst;
 
 /**
  * 加载系统配置信息，缓存数据

@@ -8,9 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.my.blog.website.constant.WebConst;
 import com.my.blog.website.utils.DateKit;
 import com.my.blog.website.utils.MapCache;
+import com.my.blog.website.utils.WebConst;
 
 /**
  * 首页 - 前台页面的控制器 Created by Administrator on 2017/3/8 008.

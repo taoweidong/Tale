@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.my.blog.website.controller.BaseController;
 import com.my.blog.website.utils.DateKit;
 
 /**
@@ -15,8 +16,7 @@ import com.my.blog.website.utils.DateKit;
  */
 @Controller
 @RequestMapping(value = "/nice")
-public class NiceController {
-	public static String THEME = "themes/nice";
+public class NiceController extends BaseController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(NiceController.class);
 
@@ -25,15 +25,6 @@ public class NiceController {
 		request.setAttribute("test", DateKit.getNowTime());
 		LOGGER.info("主题2访问接口");
 		return this.render("index");
-	}
-
-	/**
-	 * 主页的页面主题
-	 * @param viewName
-	 * @return
-	 */
-	public String render(String viewName) {
-		return THEME + "/" + viewName;
 	}
 
 }

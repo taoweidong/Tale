@@ -1,19 +1,28 @@
 package com.my.blog.website.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import com.my.blog.website.modal.Vo.UserVo;
 import com.my.blog.website.utils.MapCache;
 import com.my.blog.website.utils.TaleUtils;
-
-import javax.servlet.http.HttpServletRequest;
+import com.my.blog.website.utils.WebConst;
 
 /**
  * 基础Controller
  */
 public abstract class BaseController {
 
-	public static String THEME = "themes/default";
+	/**
+	 * 主题键.
+	 */
+	protected static final String SITE_THEME = "site_theme";
 
 	protected MapCache cache = MapCache.single();
+
+	public String getTheme() {
+		// 取出主题并进行拼接地址
+		return "themes/" + WebConst.initConfig.get(SITE_THEME);
+	}
 
 	/**
 	 * 主页的页面主题
@@ -21,7 +30,7 @@ public abstract class BaseController {
 	 * @return
 	 */
 	public String render(String viewName) {
-		return THEME + "/" + viewName;
+		return getTheme() + "/" + viewName;
 	}
 
 	public BaseController title(HttpServletRequest request, String title) {

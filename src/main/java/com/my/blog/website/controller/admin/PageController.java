@@ -5,7 +5,7 @@ import com.my.blog.website.exception.TipException;
 import com.my.blog.website.modal.Bo.RestResponseBo;
 import com.my.blog.website.modal.Vo.UserVo;
 import com.my.blog.website.service.ILogService;
-import com.my.blog.website.constant.WebConst;
+import com.my.blog.website.utils.WebConst;
 import com.my.blog.website.controller.BaseController;
 import com.my.blog.website.dto.LogActions;
 import com.my.blog.website.dto.Types;

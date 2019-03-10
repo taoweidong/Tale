@@ -2,7 +2,6 @@ package com.my.blog.website.controller.themes.defaults;
 
 import java.net.URLEncoder;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
@@ -24,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
-import com.my.blog.website.constant.WebConst;
 import com.my.blog.website.controller.BaseController;
 import com.my.blog.website.dto.ErrorCode;
 import com.my.blog.website.dto.MetaDto;
@@ -46,6 +44,7 @@ import com.my.blog.website.utils.DateKit;
 import com.my.blog.website.utils.IPKit;
 import com.my.blog.website.utils.PatternKit;
 import com.my.blog.website.utils.TaleUtils;
+import com.my.blog.website.utils.WebConst;
 import com.vdurmont.emoji.EmojiParser;
 
 /**
@@ -86,10 +85,6 @@ public class DefaultController extends BaseController {
 				WebConst.initConfig.put(vo.getName(), vo.getValue());
 			}
 
-			// 检查配置文件是否加载完毕
-			for (Map.Entry<String, String> item : WebConst.initConfig.entrySet()) {
-				System.out.println(item.getKey() + "--" + item.getValue());
-			}
 		}
 
 		return this.index(request, 1, limit);

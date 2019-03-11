@@ -13,4 +13,4 @@ My Blog是由SpringBoot+Mybatis+thymeleaf等技术实现的Java博客系统，
 * [x] [Java开源博客My-Blog之mysql容器重复初始化的严重bug修复过程](http://www.cnblogs.com/han-1034683568/p/7231895.html)
 
 # 个人博客地址：
-[http://www.taoweidong.com](http://www.taoweidong.com)
+[http://www.taoweidong.com](http://www.taoweidong.com)！！！

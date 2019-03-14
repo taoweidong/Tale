@@ -63,7 +63,8 @@ public final class Commons {
 	 * @return
 	 */
 	public static String get_attach_url(String fkey) {
-		return site_option("site_url") + fkey;
+		// return site_option("site_url") + fkey;
+		return fkey;
 	}
 
 	/**

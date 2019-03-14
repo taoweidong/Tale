@@ -1,5 +1,25 @@
 package com.my.blog.website.controller.admin;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.github.pagehelper.PageInfo;
 import com.my.blog.website.controller.BaseController;
 import com.my.blog.website.dto.LogActions;
@@ -11,24 +31,9 @@ import com.my.blog.website.modal.Vo.UserVo;
 import com.my.blog.website.service.IAttachService;
 import com.my.blog.website.service.ILogService;
 import com.my.blog.website.utils.Commons;
+import com.my.blog.website.utils.QiniuUpload;
 import com.my.blog.website.utils.TaleUtils;
 import com.my.blog.website.utils.WebConst;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 附件管理 By Taowd .
@@ -46,6 +51,9 @@ public class AttachController extends BaseController {
 
 	@Resource
 	private ILogService logService;
+
+	@Autowired
+	private QiniuUpload qiniuUpload;
 
 	/**
 	 * 附件页面
@@ -87,13 +95,16 @@ public class AttachController extends BaseController {
 					String ftype = TaleUtils.isImage(multipartFile.getInputStream())
 							? Types.IMAGE.getType()
 							: Types.FILE.getType();
-					File file = new File(CLASSPATH + fkey);
-					try {
-						FileCopyUtils.copy(multipartFile.getInputStream(),
-								new FileOutputStream(file));
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
+					// 存储本地
+					// File file = new File(CLASSPATH + fkey);
+					// try {
+					// FileCopyUtils.copy(multipartFile.getInputStream(),
+					// new FileOutputStream(file));
+					// } catch (IOException e) {
+					// e.printStackTrace();
+					// }
+					// 存储到七牛云对象存储服务
+					fkey = qiniuUpload.postFileByStream(fname, multipartFile.getInputStream());
 					attachService.save(fname, fkey, ftype, uid);
 				} else {
 					errorFiles.add(fname);

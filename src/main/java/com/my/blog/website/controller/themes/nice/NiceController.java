@@ -24,6 +24,7 @@ public class NiceController extends BaseController {
 	public String test(HttpServletRequest request) {
 		request.setAttribute("test", DateKit.getNowTime());
 		LOGGER.info("主题2访问接口");
+
 		return this.render("index");
 	}
 

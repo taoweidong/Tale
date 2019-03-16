@@ -1,7 +1,6 @@
 # My Blog
 
-My Blog是由SpringBoot+Mybatis+thymeleaf等技术实现的Java博客系统，
-使用开源博客tale作为原型进行二次开发，用于个人技术学习以及整理的平台。
+项目重构。
 
 
 #### 相关博客文章

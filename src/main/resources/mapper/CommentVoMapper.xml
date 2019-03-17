@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.my.blog.website.dao.CommentVoMapper">
-	<resultMap id="BaseResultMap" type="com.my.blog.website.modal.Vo.CommentVo">
+<mapper namespace="com.ajr.webapp.dao.CommentVoMapper">
+	<resultMap id="BaseResultMap" type="com.ajr.webapp.modal.Vo.CommentVo">
 		<id column="coid" jdbcType="INTEGER" property="coid" />
 		<result column="cid" jdbcType="INTEGER" property="cid" />
 		<result column="created" jdbcType="INTEGER" property="created" />
@@ -17,7 +17,7 @@
 		<result column="parent" jdbcType="INTEGER" property="parent" />
 	</resultMap>
 	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
-		type="com.my.blog.website.modal.Vo.CommentVo">
+		type="com.ajr.webapp.modal.Vo.CommentVo">
 		<result column="content" jdbcType="LONGVARCHAR" property="content" />
 	</resultMap>
 	<sql id="Example_Where_Clause">
@@ -88,7 +88,7 @@
 		content
 	</sql>
 	<select id="selectByExampleWithBLOBs"
-		parameterType="com.my.blog.website.modal.Vo.CommentVoExample" resultMap="ResultMapWithBLOBs">
+		parameterType="com.ajr.webapp.modal.Vo.CommentVoExample" resultMap="ResultMapWithBLOBs">
 		select
 		<if test="distinct">
 			distinct
@@ -104,7 +104,7 @@
 			order by ${orderByClause}
 		</if>
 	</select>
-	<select id="selectByExample" parameterType="com.my.blog.website.modal.Vo.CommentVoExample"
+	<select id="selectByExample" parameterType="com.ajr.webapp.modal.Vo.CommentVoExample"
 		resultMap="BaseResultMap">
 		select
 		<if test="distinct">
@@ -141,13 +141,13 @@
 		where coid =
 		#{coid,jdbcType=INTEGER}
 	</delete>
-	<delete id="deleteByExample" parameterType="com.my.blog.website.modal.Vo.CommentVoExample">
+	<delete id="deleteByExample" parameterType="com.ajr.webapp.modal.Vo.CommentVoExample">
 		delete from t_comments
 		<if test="_parameter != null">
 			<include refid="Example_Where_Clause" />
 		</if>
 	</delete>
-	<insert id="insert" parameterType="com.my.blog.website.modal.Vo.CommentVo"
+	<insert id="insert" parameterType="com.ajr.webapp.modal.Vo.CommentVo"
 		useGeneratedKeys="true" keyProperty="coid">
 		insert into t_comments (coid, cid, created,
 		author, author_id,
@@ -165,7 +165,7 @@
 		#{type,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{parent,jdbcType=INTEGER},
 		#{content,jdbcType=LONGVARCHAR})
 	</insert>
-	<insert id="insertSelective" parameterType="com.my.blog.website.modal.Vo.CommentVo"
+	<insert id="insertSelective" parameterType="com.ajr.webapp.modal.Vo.CommentVo"
 		useGeneratedKeys="true" keyProperty="coid">
 		insert into t_comments
 		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -257,7 +257,7 @@
 			</if>
 		</trim>
 	</insert>
-	<select id="countByExample" parameterType="com.my.blog.website.modal.Vo.CommentVoExample"
+	<select id="countByExample" parameterType="com.ajr.webapp.modal.Vo.CommentVoExample"
 		resultType="java.lang.Long">
 		select count(*) from t_comments
 		<if test="_parameter != null">
@@ -364,7 +364,7 @@
 		</if>
 	</update>
 	<update id="updateByPrimaryKeySelective"
-		parameterType="com.my.blog.website.modal.Vo.CommentVo">
+		parameterType="com.ajr.webapp.modal.Vo.CommentVo">
 		update t_comments
 		<set>
 			<if test="cid != null">
@@ -410,7 +410,7 @@
 		where coid = #{coid,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKeyWithBLOBs"
-		parameterType="com.my.blog.website.modal.Vo.CommentVo">
+		parameterType="com.ajr.webapp.modal.Vo.CommentVo">
 		update t_comments
 		set cid = #{cid,jdbcType=INTEGER},
 		created =
@@ -432,7 +432,7 @@
 		where coid =
 		#{coid,jdbcType=INTEGER}
 	</update>
-	<update id="updateByPrimaryKey" parameterType="com.my.blog.website.modal.Vo.CommentVo">
+	<update id="updateByPrimaryKey" parameterType="com.ajr.webapp.modal.Vo.CommentVo">
 		update t_comments
 		set cid =
 		#{cid,jdbcType=INTEGER},

@@ -7,11 +7,7 @@ import java.io.IOException;
 import java.nio.channels.FileChannel;
 import java.util.Random;
 
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
-
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
+import org.jasypt.util.text.BasicTextEncryptor;
 
 /**
  * 工具类 Created by BlueT on 2017/3/9.
@@ -56,24 +52,33 @@ public class Tools {
 	}
 
 	public static String enAes(String data, String key) throws Exception {
-		Cipher cipher = Cipher.getInstance("AES");
-		SecretKeySpec secretKeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
-		cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
-		byte[] encryptedBytes = cipher.doFinal(data.getBytes());
-		return new BASE64Encoder().encode(encryptedBytes);
+//		Cipher cipher = Cipher.getInstance("AES");
+//		SecretKeySpec secretKeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
+//		cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
+//		byte[] encryptedBytes = cipher.doFinal(data.getBytes());
+//		return new BASE64Encoder().encode(encryptedBytes);
+		// 加密方式：jasypt
+		BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
+		textEncryptor.setPassword(WebConst.AES_SALT);
+		return textEncryptor.encrypt("data");
 	}
 
 	public static String deAes(String data, String key) throws Exception {
-		Cipher cipher = Cipher.getInstance("AES");
-		SecretKeySpec secretKeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
-		cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
-		byte[] cipherTextBytes = new BASE64Decoder().decodeBuffer(data);
-		byte[] decValue = cipher.doFinal(cipherTextBytes);
-		return new String(decValue);
+//		Cipher cipher = Cipher.getInstance("AES");
+//		SecretKeySpec secretKeySpec = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
+//		cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
+//		byte[] cipherTextBytes = new BASE64Decoder().decodeBuffer(data);
+//		byte[] decValue = cipher.doFinal(cipherTextBytes);
+//		return new String(decValue);
+		// 解密方式：jasypt
+		BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
+		textEncryptor.setPassword(WebConst.AES_SALT);
+		return textEncryptor.decrypt("data");
 	}
 
 	/**
 	 * 判断字符串是否为数字和有正确的值
+	 * 
 	 * @param str
 	 * @return
 	 */

@@ -4,5 +4,8 @@
 - 新增七牛云对象存储服务，存储上传图片
 - 新增配置文件加密功能，保证安全性
 
+## 2019年3月19日
+- 使用EasyPOI导出文件
+
 # 个人博客地址：
 [http://www.taoweidong.com](http://www.taoweidong.com)！！！

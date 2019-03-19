@@ -36,12 +36,29 @@
 	</properties>
 
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/com.qiniu/qiniu-java-sdk -->
+		<!--Excel导出文件 -->
+		<dependency>
+			<groupId>cn.afterturn</groupId>
+			<artifactId>easypoi-base</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.afterturn</groupId>
+			<artifactId>easypoi-web</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>cn.afterturn</groupId>
+			<artifactId>easypoi-annotation</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+		<!-- 七牛云文件上传 -->
 		<dependency>
 			<groupId>com.qiniu</groupId>
 			<artifactId>qiniu-java-sdk</artifactId>
 			<version>7.2.18</version>
 		</dependency>
+		<!--配置文件加解密 -->
 		<dependency>
 			<groupId>com.github.ulisesbocchio</groupId>
 			<artifactId>jasypt-spring-boot-starter</artifactId>
@@ -198,12 +215,15 @@
 	<!-- 普通的maven打包方式 -->
 
 	<!-- 结合docker的maven打包方式,并上传提交创建的镜像 -->
-	<!--<build> <plugins> <plugin> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-maven-plugin</artifactId> 
-		</plugin> <plugin> <groupId>com.spotify</groupId> <artifactId>docker-maven-plugin</artifactId> <version>${docker.plugin.version}</version> 
-		<executions> <execution> <phase>install</phase> <goals> <goal>build</goal> </goals> </execution> </executions> 
-		<configuration> <imageName>${docker.image.prefix}/${project.artifactId}</imageName> <dockerDirectory>${project.basedir}/docker-extension/my-blog</dockerDirectory> 
-		<resources> <resource> <targetPath>/</targetPath> <directory>${project.build.directory}</directory> <include>${project.build.finalName}.jar</include> 
-		</resource> </resources> </configuration> </plugin> </plugins> </build> -->
+	<!--<build> <plugins> <plugin> <groupId>org.springframework.boot</groupId> 
+		<artifactId>spring-boot-maven-plugin</artifactId> </plugin> <plugin> <groupId>com.spotify</groupId> 
+		<artifactId>docker-maven-plugin</artifactId> <version>${docker.plugin.version}</version> 
+		<executions> <execution> <phase>install</phase> <goals> <goal>build</goal> 
+		</goals> </execution> </executions> <configuration> <imageName>${docker.image.prefix}/${project.artifactId}</imageName> 
+		<dockerDirectory>${project.basedir}/docker-extension/my-blog</dockerDirectory> 
+		<resources> <resource> <targetPath>/</targetPath> <directory>${project.build.directory}</directory> 
+		<include>${project.build.finalName}.jar</include> </resource> </resources> 
+		</configuration> </plugin> </plugins> </build> -->
 	<!-- 结合docker的maven打包方式,并上传提交创建的镜像 -->
 
 </project>

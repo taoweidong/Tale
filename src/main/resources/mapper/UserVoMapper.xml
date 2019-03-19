@@ -75,8 +75,10 @@
     uid, username, password, email, home_url, screen_name, created, activated, logged, 
     group_name
   </sql>
-  <select id="selectByExample" parameterType="com.my.blog.website.modal.Vo.UserVoExample" resultMap="BaseResultMap">
-    select
+  <select id="selectByExample"
+	parameterType="com.my.blog.website.modal.Vo.UserVoExample"
+	resultMap="BaseResultMap">
+	select
     <if test="distinct">
       distinct
     </if>
